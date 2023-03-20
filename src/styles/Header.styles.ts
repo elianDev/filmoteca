@@ -18,13 +18,13 @@ export const HeaderContainer = styled.header`
       gap: 0.5rem;
 
       a {
-        color: var(--text-color-01);
+        color: white;
         font-size: 1.125rem;
         padding: 0.5rem;
       }
 
       a.active {
-        color: var(--active);
+        color: var(--orange);
       }
     }
     img {

@@ -22,6 +22,7 @@
 
 body {
   padding-top: 4rem;
+  background: var(--bg-primary);
 }
 
 img {
