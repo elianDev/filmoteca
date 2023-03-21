@@ -15,7 +15,11 @@ const CategoryNav = ({ setCategory, categories, title }: CategoryNavProps) => {
           <button
             key={category.category}
             id={category.category}
-            onClick={({ target }) => setCategory(target.id)}
+            onClick={({
+              target,
+            }: React.MouseEvent<HTMLButtonElement, MouseEvent> & {
+              target: HTMLButtonElement;
+            }) => setCategory(target.id)}
           >
             {category.title}
           </button>

@@ -18,7 +18,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           <span>
             <Star size={24} />
           </span>
-          <span>{movie.vote_average}</span>
+          <span>{movie.vote_average.toString()}</span>
         </div>
       </div>
     </MovieCardContainer>

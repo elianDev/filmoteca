@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MovieContainer } from "../styles/Movie.styles";
+import { MoviesContainer } from "../styles/Movies.styles";
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
@@ -15,6 +15,8 @@ declare global {
     vote_average: number;
     id: number;
     poster_path: string;
+    original_title: string;
+    runtime: number;
   }
 }
 
@@ -48,13 +50,13 @@ const Movies = ({ category }: MoviesProps) => {
   if (error) return <p>{error}</p>;
   if (data === null) return null;
   return (
-    <MovieContainer className="container animeLeft">
+    <MoviesContainer className="container animeLeft">
       {data.map((movie) => (
-        <Link to={`/filme/${movie.title.toLowerCase()}`} key={movie.id}>
+        <Link to={`/filme/${movie.id}`} key={movie.id}>
           <MovieCard movie={movie} />
         </Link>
       ))}
-    </MovieContainer>
+    </MoviesContainer>
   );
 };
 
