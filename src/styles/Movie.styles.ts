@@ -8,6 +8,23 @@ export const MovieContainer = styled.section`
   padding-bottom: 2rem;
   color: var(--text-color-01);
 
+  @media (max-width: 700px) {
+    grid-template-columns: 200px 1fr;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+
+    button {
+      width: 100%;
+    }
+  }
+
   .content {
     h1 {
       font-size: 2rem;
