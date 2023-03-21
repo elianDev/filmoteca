@@ -1,29 +1,27 @@
 import React from "react";
 import { NavCategoryContainer } from "../styles/CategoryNav.styles";
 
-const categories = [
-  { category: "popular", title: "Populares" },
-  { category: "top_rated", title: "Melhores Avaliações" },
-  { category: "now_playing", title: "Em cartaz" },
-  { category: "upcoming", title: "Em breve" },
-];
-
 interface CategoryNavProps {
-  setCategory: (value: string) => void;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  categories: Category[];
+  title?: string;
 }
 
-const CategoryNav = ({ setCategory }: CategoryNavProps) => {
+const CategoryNav = ({ setCategory, categories, title }: CategoryNavProps) => {
   return (
     <NavCategoryContainer className="container">
-      {categories.map((category) => (
-        <button
-          key={category.category}
-          id={category.category}
-          onClick={({ target }) => setCategory(target.id)}
-        >
-          {category.title}
-        </button>
-      ))}
+      <div className="nav-buttons">
+        {categories.map((category) => (
+          <button
+            key={category.category}
+            id={category.category}
+            onClick={({ target }) => setCategory(target.id)}
+          >
+            {category.title}
+          </button>
+        ))}
+      </div>
+      <h1>{title}</h1>
     </NavCategoryContainer>
   );
 };
