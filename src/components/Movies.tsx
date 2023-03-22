@@ -3,8 +3,10 @@ import { MoviesContainer } from "../styles/Movies.styles";
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
+import NotFound from "./NotFound";
 
 const movieURL = import.meta.env.VITE_API;
+const searchURL = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 declare global {
@@ -22,9 +24,10 @@ declare global {
 
 interface MoviesProps {
   category: string;
+  search: string;
 }
 
-const Movies = ({ category }: MoviesProps) => {
+const Movies = ({ category, search }: MoviesProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | boolean>(false);
   const [data, setData] = useState<Movie[] | null>(null);
@@ -36,19 +39,26 @@ const Movies = ({ category }: MoviesProps) => {
         const response = await fetch(url);
         const json = await response.json();
         setData(json.results);
+        console.log(json);
       } catch (erro) {
         setError("Um erro ocorreu");
       } finally {
         setLoading(false);
       }
     }
-    const url = `${movieURL}/${category}?${apiKey}&language=pt-BR`;
+    let url = "";
+    if (search) {
+      url = `${searchURL}?${apiKey}&language=pt-BR&page=1&query=${search}`;
+    } else {
+      url = `${movieURL}/${category}?${apiKey}&language=pt-BR`;
+    }
     fetchData(url);
-  }, [category]);
+  }, [category, search]);
 
   if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
   if (data === null) return null;
+  if (data.length === 0) return <NotFound />;
   return (
     <MoviesContainer className="container animeLeft">
       {data.map((movie) => (

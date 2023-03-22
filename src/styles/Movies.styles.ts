@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MoviesContainer = styled.article`
-  padding-top: 3rem;
   padding-bottom: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

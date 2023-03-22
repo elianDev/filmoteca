@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CategoryNav from "./CategoryNav";
 import Movies from "./Movies";
+import Search from "./Search";
 
 const categories = [
   { category: "popular", title: "Populares" },
@@ -19,6 +20,7 @@ declare global {
 const Home = () => {
   const [category, setCategory] = useState("popular");
   const [title, setTitle] = useState<Category | undefined>(undefined);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     setTitle(
@@ -35,7 +37,8 @@ const Home = () => {
         categories={categories}
         {...title}
       />
-      <Movies category={category} />
+      <Search search={search} setSearch={setSearch} />
+      <Movies category={category} search={search} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const NavCategoryContainer = styled.nav`
+  margin-bottom: 1rem;
   .nav-buttons {
     display: flex;
     flex-wrap: wrap;
