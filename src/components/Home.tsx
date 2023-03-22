@@ -33,6 +33,7 @@ const Home = () => {
   return (
     <div>
       <CategoryNav
+        setSearch={setSearch}
         setCategory={setCategory}
         categories={categories}
         {...title}

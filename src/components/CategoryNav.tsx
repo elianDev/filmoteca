@@ -2,12 +2,27 @@ import React from "react";
 import { NavCategoryContainer } from "../styles/CategoryNav.styles";
 
 interface CategoryNavProps {
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   categories: Category[];
   title?: string;
 }
 
-const CategoryNav = ({ setCategory, categories, title }: CategoryNavProps) => {
+const CategoryNav = ({
+  setSearch,
+  setCategory,
+  categories,
+  title,
+}: CategoryNavProps) => {
+  function handleClick({
+    target,
+  }: React.MouseEvent<HTMLButtonElement, MouseEvent> & {
+    target: HTMLButtonElement;
+  }) {
+    setCategory(target.id);
+    setSearch("");
+  }
+
   return (
     <NavCategoryContainer className="container">
       <div className="nav-buttons">
@@ -15,11 +30,7 @@ const CategoryNav = ({ setCategory, categories, title }: CategoryNavProps) => {
           <button
             key={category.category}
             id={category.category}
-            onClick={({
-              target,
-            }: React.MouseEvent<HTMLButtonElement, MouseEvent> & {
-              target: HTMLButtonElement;
-            }) => setCategory(target.id)}
+            onClick={handleClick}
           >
             {category.title}
           </button>
