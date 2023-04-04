@@ -39,7 +39,6 @@ const Movies = ({ category, search }: MoviesProps) => {
         const response = await fetch(url);
         const json = await response.json();
         setData(json.results);
-        console.log(json);
       } catch (erro) {
         setError("Um erro ocorreu");
       } finally {
